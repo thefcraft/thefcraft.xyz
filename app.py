@@ -1,12 +1,13 @@
 from flask import Flask, url_for, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
-import random, os
+import random, os, secrets
 
 MAIL_USERNAME = 'thefcraft.xyz@gmail.com'
 MAIL_PASSWORD = 'vxjkzayehnlygqla'
 
 app = Flask(__name__)
+app.secret_key = secrets.token_urlsafe(16)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 
@@ -137,7 +138,6 @@ def send_otp(otp, email):
     return True
 
 if(__name__ == '__main__'):
-    app.secret_key = "ThisIsNotASecret:p"
     with app.app_context():
         # print(app.name)
         db.create_all()
