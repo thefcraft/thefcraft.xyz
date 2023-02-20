@@ -39,10 +39,10 @@ class User():
         if not os.path.exists('instance'): 
             os.makedirs('instance')
 
-        db = '# username, password, email, otp'
+            db = '# username, password, email, otp'
 
-        with open(filename, 'w') as f: 
-            f.write(obfuscate(db)+'\n')
+            with open(filename, 'w') as f: 
+                f.write(obfuscate(db)+'\n')
     
     def filter_by(self=None, email=None, password=None, otp=None, username=None):
         db = User.old_db()
