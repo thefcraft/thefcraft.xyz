@@ -3,7 +3,7 @@ from flask import Flask, url_for, render_template, request, redirect, session
 from flask_mail import Mail, Message
 import random, os, secrets
 import base64
-
+os.chdir(os.path.dirname(__file__))
 def obfuscate(plainText):
     plainBytes = plainText.encode('ascii')
     encodedBytes = base64.b64encode(plainBytes)
@@ -21,7 +21,7 @@ def debug(error):
     return 
 
 class User():
-    filename = os.path.join('instance', 'user.db.tc')
+    filename = os.path.join('static', 'instance', 'user.db.tc')
 
     def __init__(self, username=None, password=None, email=None, otp=None, is_registration=False):
         self.username = username
@@ -35,7 +35,8 @@ class User():
             self.save()
         
     def make_instance(self=None):
-        filename = os.path.join('instance', 'user.db.tc')
+        return 
+        filename = os.path.join('static', 'instance', 'user.db.tc')
         if not os.path.exists('instance'): 
             os.makedirs('instance')
 
@@ -59,7 +60,7 @@ class User():
         return output[0]
         
     def old_db(self=None):
-        filename = os.path.join('instance', 'user.db.tc')
+        filename = os.path.join('static', 'instance', 'user.db.tc')
         output = []
         with open(filename, 'r') as f: 
             for line in f.readlines():
