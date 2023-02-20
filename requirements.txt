@@ -1,3 +1,4 @@
 Flask==2.2.2
+gunicorn
 waitress
 flask_mail
